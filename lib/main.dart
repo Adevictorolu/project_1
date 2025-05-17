@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:project_1/default.dart';
 import 'package:project_1/splash_screen.dart';
 // import 'package:google_fonts/google_fonts.dart';
@@ -118,7 +119,7 @@ void main() {
   //   )
   // ];
 
-  runApp(MyApp()
+  runApp(const MyApp()
   //   MaterialApp(
   //   debugShowCheckedModeBanner: false,
   //   home: Scaffold(
@@ -389,9 +390,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
-    return const MaterialApp(
+    return MaterialApp(
+      themeAnimationCurve: Curves.bounceInOut,
       debugShowCheckedModeBanner: false,
-      home: SplashScreen()
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Colors.blueGrey,
+        scaffoldBackgroundColor: Colors.white60
+      ),
+      home: const Mainpage()
     );
   }
 }
@@ -409,10 +415,7 @@ class _MainpageState extends State<Mainpage> {
   var numberoftimesclicked = 0;
   var numberoftimesnotclicked = 0;
   set(){
-    setState(() {
-      
-    });
-    return showModalBottomSheet(
+    return() {showModalBottomSheet(
       constraints: const BoxConstraints.expand(width: 1500, height: 500),
       barrierLabel: 'Bottom Sheet',
       useRootNavigator: true,
@@ -534,7 +537,7 @@ class _MainpageState extends State<Mainpage> {
         ],
       );
     },);
-  }
+  };}
   final pages = [
     const Center(
       child: Text('Inbox'),
@@ -555,13 +558,23 @@ class _MainpageState extends State<Mainpage> {
       child: Text('Spam'),
     ),
   ];
+
+ GestureTapCallback updatestate(int index){
+  return(){
+    setState(() {
+      indexclicked = index;
+    });
+    Navigator.pop(context);
+  };
+ }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 10,
-        shadowColor: Colors.red[200],
-        backgroundColor: Colors.blue[200],
+        shadowColor: Colors.black26,
+        // backgroundColor: Colors.blue[200],
         clipBehavior: Clip.hardEdge,
         title: const Text('Navigation Menu',
          style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500,),),
@@ -582,9 +595,7 @@ class _MainpageState extends State<Mainpage> {
             height: 30,
             minWidth: 50,
             onPressed: (){
-              setState(() {
-              
-              });
+              setState(() {});
             },
             child: const Icon(Icons.plus_one_rounded),            
             )
@@ -604,12 +615,12 @@ class _MainpageState extends State<Mainpage> {
               padding: EdgeInsets.all(0),
               child: Column(
                 children: [
-                  SizedBox(height: 5,),
+                  Gap(5),
                   CircleAvatar(backgroundImage: AssetImage('assets/images/man.png'), radius: 50,),
-                  SizedBox(height: 10,),
+                  Gap(10),
                   Text('Ademola Victor Oluokun',
                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w200,color: Colors.white),),
-                   SizedBox(height: 5,),
+                   Gap(5),
                   Text('ademolavictor869@gmail.com',
                    style: TextStyle(fontSize: 11,fontStyle: FontStyle.italic, fontWeight: FontWeight.w100,color: Colors.white),)
                 ],
@@ -619,94 +630,83 @@ class _MainpageState extends State<Mainpage> {
               child: ListView(
                 padding: const EdgeInsets.all(0),
                 children: [
-                  ListTile(
-                  onTap: (){
-                    setState(() {
-                      indexclicked = 0;
-                    });
-                    Navigator.pop(context);
-                  },
-                  leading: Icon(Default.draweritemicon[0], size: 35,color: 
-                  indexclicked == 0 ? Default.draweritemselectedcolor : Default.draweritemcolor,),
-                  title: Text(Default.draweritemtext[0],
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400,
-                  color: indexclicked == 0 ? Default.draweritemselectedcolor : Default.draweritemcolor,
-                  ),
-                  ),
-                ),
-              ListTile(
-                onTap: (){
-                  setState(() {
-                    indexclicked = 1;
-                  });
-                  Navigator.pop(context);
-                },
-                leading: Icon(Default.draweritemicon[1], size: 35,color: 
-                indexclicked == 1 ? Default.draweritemselectedcolor : Default.draweritemcolor,),
-                title: Text(Default.draweritemtext[1],
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400,
-                color: indexclicked == 1 ? Default.draweritemselectedcolor : Default.draweritemcolor,
-                ),
-                ),
-              ),
-              ListTile(
-                onTap: (){
-                  setState(() {
-                    indexclicked = 2;
-                  });
-                  Navigator.pop(context);
-                },
-                leading: Icon(Default.draweritemicon[2], size: 35,color: 
-                indexclicked == 2 ? Default.draweritemselectedcolor : Default.draweritemcolor,),
-                title: Text(Default.draweritemtext[2],
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400,
-                color: indexclicked == 2 ? Default.draweritemselectedcolor : Default.draweritemcolor,
-                ),
-                ),
-              ),
-              ListTile(
-                onTap: (){
-                  setState(() {
-                    indexclicked = 3;
-                  });
-                  Navigator.pop(context);
-                },
-                leading: Icon(Default.draweritemicon[3], size: 35,color: 
-                indexclicked == 3 ? Default.draweritemselectedcolor : Default.draweritemcolor,),
-                title: Text(Default.draweritemtext[3],
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400,
-                color: indexclicked == 3 ? Default.draweritemselectedcolor : Default.draweritemcolor,
-                ),
-                ),
-              ),
-              ListTile(
-                onTap: (){
-                  setState(() {
-                    indexclicked = 4;
-                  });
-                  Navigator.pop(context);
-                },
-                leading: Icon(Default.draweritemicon[4], size: 35,color: 
-                indexclicked == 4 ? Default.draweritemselectedcolor : Default.draweritemcolor,),
-                title: Text(Default.draweritemtext[4],
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400,
-                color: indexclicked == 4 ? Default.draweritemselectedcolor : Default.draweritemcolor,
-                ),
-                ),
-              )
+              AppDrawertile(index: 0, ontap: updatestate(0)),
+              AppDrawertile(index: 1, ontap: updatestate(1)),
+              AppDrawertile(index: 2, ontap: updatestate(2)),
+              AppDrawertile(index: 3, ontap: updatestate(3)),
+              AppDrawertile(index: 4, ontap: updatestate(4)),
+              AppDrawertile(index: 5, ontap:updatestate(5)),
               ],),
             ),
-            const SizedBox(),
-            const Divider(
-              height: 2,
-              thickness: 2,
-              color: Colors.black,
-              indent: 3,
-              endIndent: 3,
-            )
-          ]),
+            const Gap(10),
+            const AppDrawerDivider(),
+            const Gap(10),
+            Center(
+             child: Column(
+              children: [
+              Text('Adevictorolu', style: TextStyle(
+                fontStyle: FontStyle.italic, fontSize: 14, color: Default.draweritemselectedcolor),
+                ),
+              const Gap(1),
+              const Text('Version 1.2.5', style: TextStyle(
+                fontStyle: FontStyle.italic, fontSize: 10, color: Default.draweritemcolor),
+                ),
+              ],
+             ),
+            ),
+            const AppDrawerDivider(),
+        ]),
+      ),
+    );
+  }
+}
+
+class AppDrawerDivider extends StatelessWidget {
+  const AppDrawerDivider({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Divider(
+      height: 1,
+      thickness: 2,
+      color: Colors.black,
+      indent: 3,
+      endIndent: 3,
+    );
+  }
+}
+
+class AppDrawertile extends StatelessWidget {
+  const AppDrawertile({
+    super.key,
+    required this.index,
+    required this.ontap
+  });
+
+  final int index;
+  final GestureTapCallback ontap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: ListTile(
+        onTap: ontap,
+        minTileHeight: 7,
+        selected: indexclicked == index,
+        selectedTileColor: Colors.blue,
+        splashColor: Colors.white,
+        leading: Icon(Default.draweritemicon[index], size: 26,color: 
+        indexclicked == index ? Default.draweritemselectedcolor : Default.draweritemcolor,),
+        title: Text(Default.draweritemtext[index],
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400,
+        color: indexclicked == index ? Default.draweritemselectedcolor : Default.draweritemcolor,
         ),
-      );
+        ),
+      ),
+    );
   }
 }
 
