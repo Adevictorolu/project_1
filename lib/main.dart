@@ -559,7 +559,7 @@ class _MainpageState extends State<Mainpage> {
     ),
   ];
 
- GestureTapCallback updatestate(int index){
+GestureTapCallback updatestate(int index){
   return(){
     setState(() {
       indexclicked = index;
@@ -567,17 +567,34 @@ class _MainpageState extends State<Mainpage> {
     Navigator.pop(context);
   };
  }
+GlobalKey<ScaffoldState> drawerkey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key: GlobalKey(),
+        leading: const Image(
+          height: 12,
+          image: AssetImage('assets/images/avoteklogo.png')),
+        actions: [
+          IconButton(splashRadius: 10, splashColor: Colors.green, onPressed: (){}, icon: const Icon(Icons.cast_connected_rounded)),
+          IconButton(splashRadius: 10, splashColor: Colors.green, onPressed: (){
+             drawerkey.currentState?.openEndDrawer();
+          }, icon: const Icon(Icons.notifications_active_rounded)),
+          IconButton(splashRadius: 10, splashColor: Colors.green, onPressed: (){
+            drawerkey.currentState?.openEndDrawer();
+          }, icon: const CircleAvatar(
+            backgroundImage: AssetImage('assets/images/man.png'),
+            radius: 30,
+          )),
+        ],
         elevation: 10,
         shadowColor: Colors.black26,
-        // backgroundColor: Colors.blue[200],
+        backgroundColor: Colors.blue[200],
         clipBehavior: Clip.hardEdge,
         title: const Text('Navigation Menu',
-         style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500,),),
+         style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500,),),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -601,62 +618,62 @@ class _MainpageState extends State<Mainpage> {
             )
         ],
       ),
-      drawer: Drawer(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.orange,
-                image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage('assets/images/avoteklogo.png')),
-              ),
-              padding: EdgeInsets.all(0),
-              child: Column(
-                children: [
-                  Gap(5),
-                  CircleAvatar(backgroundImage: AssetImage('assets/images/man.png'), radius: 50,),
-                  Gap(10),
-                  Text('Ademola Victor Oluokun',
-                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.w200,color: Colors.white),),
-                   Gap(5),
-                  Text('ademolavictor869@gmail.com',
-                   style: TextStyle(fontSize: 11,fontStyle: FontStyle.italic, fontWeight: FontWeight.w100,color: Colors.white),)
-                ],
-              )
-              ),
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.all(0),
-                children: [
-              AppDrawertile(index: 0, ontap: updatestate(0)),
-              AppDrawertile(index: 1, ontap: updatestate(1)),
-              AppDrawertile(index: 2, ontap: updatestate(2)),
-              AppDrawertile(index: 3, ontap: updatestate(3)),
-              AppDrawertile(index: 4, ontap: updatestate(4)),
-              AppDrawertile(index: 5, ontap:updatestate(5)),
-              ],),
-            ),
-            const Gap(10),
-            const AppDrawerDivider(),
-            const Gap(10),
-            Center(
-             child: Column(
-              children: [
-              Text('Adevictorolu', style: TextStyle(
-                fontStyle: FontStyle.italic, fontSize: 14, color: Default.draweritemselectedcolor),
-                ),
-              const Gap(1),
-              const Text('Version 1.2.5', style: TextStyle(
-                fontStyle: FontStyle.italic, fontSize: 10, color: Default.draweritemcolor),
-                ),
-              ],
-             ),
-            ),
-            const AppDrawerDivider(),
-        ]),
-      ),
+      // drawer: Drawer(
+      //   child: Column(
+      //     crossAxisAlignment: CrossAxisAlignment.stretch,
+      //     children: [
+      //       const DrawerHeader(
+      //         decoration: BoxDecoration(
+      //           color: Colors.orange,
+      //           image: DecorationImage(
+      //             fit: BoxFit.fill,
+      //             image: AssetImage('assets/images/avoteklogo.png')),
+      //         ),
+      //         padding: EdgeInsets.all(0),
+      //         child: Column(
+      //           children: [
+      //             Gap(5),
+      //             CircleAvatar(backgroundImage: AssetImage('assets/images/man.png'), radius: 50,),
+      //             Gap(10),
+      //             Text('Ademola Victor Oluokun',
+      //              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w200,color: Colors.white),),
+      //              Gap(5),
+      //             Text('ademolavictor869@gmail.com',
+      //              style: TextStyle(fontSize: 11,fontStyle: FontStyle.italic, fontWeight: FontWeight.w100,color: Colors.white),)
+      //           ],
+      //         )
+      //         ),
+      //       Expanded(
+      //         child: ListView(
+      //           padding: const EdgeInsets.all(0),
+      //           children: [
+      //         AppDrawertile(index: 0, ontap: updatestate(0)),
+      //         AppDrawertile(index: 1, ontap: updatestate(1)),
+      //         AppDrawertile(index: 2, ontap: updatestate(2)),
+      //         AppDrawertile(index: 3, ontap: updatestate(3)),
+      //         AppDrawertile(index: 4, ontap: updatestate(4)),
+      //         AppDrawertile(index: 5, ontap:updatestate(5)),
+      //         ],),
+      //       ),
+      //       const Gap(10),
+      //       const AppDrawerDivider(),
+      //       const Gap(10),
+      //       Center(
+      //        child: Column(
+      //         children: [
+      //         Text('Adevictorolu', style: TextStyle(
+      //           fontStyle: FontStyle.italic, fontSize: 14, color: Default.draweritemselectedcolor),
+      //           ),
+      //         const Gap(1),
+      //         const Text('Version 1.2.5', style: TextStyle(
+      //           fontStyle: FontStyle.italic, fontSize: 10, color: Default.draweritemcolor),
+      //           ),
+      //         ],
+      //        ),
+      //       ),
+      //       const AppDrawerDivider(),
+      //   ]),
+      // ),
     );
   }
 }
