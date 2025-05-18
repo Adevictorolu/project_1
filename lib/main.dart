@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:project_1/appbar.dart';
 import 'package:project_1/default.dart';
-import 'package:project_1/splash_screen.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -397,7 +397,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blueGrey,
         scaffoldBackgroundColor: Colors.white60
       ),
-      home: const Mainpage()
+      home: const AppBarScreen()
     );
   }
 }
@@ -567,113 +567,128 @@ GestureTapCallback updatestate(int index){
     Navigator.pop(context);
   };
  }
-GlobalKey<ScaffoldState> drawerkey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        key: GlobalKey(),
-        leading: const Image(
-          height: 12,
-          image: AssetImage('assets/images/avoteklogo.png')),
-        actions: [
-          IconButton(splashRadius: 10, splashColor: Colors.green, onPressed: (){}, icon: const Icon(Icons.cast_connected_rounded)),
-          IconButton(splashRadius: 10, splashColor: Colors.green, onPressed: (){
-             drawerkey.currentState?.openEndDrawer();
-          }, icon: const Icon(Icons.notifications_active_rounded)),
-          IconButton(splashRadius: 10, splashColor: Colors.green, onPressed: (){
-            drawerkey.currentState?.openEndDrawer();
-          }, icon: const CircleAvatar(
-            backgroundImage: AssetImage('assets/images/man.png'),
-            radius: 30,
-          )),
-        ],
-        elevation: 10,
-        shadowColor: Colors.black26,
-        backgroundColor: Colors.blue[200],
-        clipBehavior: Clip.hardEdge,
-        title: const Text('Navigation Menu',
-         style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500,),),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          pages[indexclicked],
-          FloatingActionButton(onPressed: (){
-            return set();
-          },
-          child: const Icon(Icons.add_shopping_cart_rounded),
-          ),
-          const SizedBox(height: 20,),
-          MaterialButton(
-            color: Colors.blue,
-            elevation: 30,
-            height: 30,
-            minWidth: 50,
-            onPressed: (){
-              setState(() {});
+  GlobalKey<ScaffoldState> drawerkey = GlobalKey(debugLabel: 'Here');
+    return DefaultTabController(
+      length: 3,
+      initialIndex: 0,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(icon: IconButton(onPressed: (){
+                const TabBarView(children: [
+                  Center(child: Text('Tab Activated'),)
+                ]);
+              }, icon: const Icon(Icons.person_2_rounded)),),
+              Tab(icon: IconButton(onPressed: (){}, icon: const Icon(Icons.person_2_rounded)),),
+              Tab(icon: IconButton(onPressed: (){}, icon: const Icon(Icons.person_2_rounded)),),
+            ]
+            ),
+          key: drawerkey,
+          // leading: const Image(
+          //   height: 12,
+          //   image: AssetImage('assets/images/avoteklogo.png')),
+          actions: [
+            IconButton(splashRadius: 10, splashColor: Colors.green, onPressed: (){}, icon: const Icon(Icons.cast_connected_rounded)),
+            IconButton(splashRadius: 10, splashColor: Colors.green, onPressed: (){
+               drawerkey.currentState?.openEndDrawer();
+            }, icon: const Icon(Icons.notifications_active_rounded)),
+            IconButton(splashRadius: 10, splashColor: Colors.green, onPressed: (){
+              drawerkey.currentState?.openEndDrawer();
+            }, icon: const CircleAvatar(
+              backgroundImage: AssetImage('assets/images/man.png'),
+              radius: 30,
+            )),
+          ],
+          elevation: 10,
+          shadowColor: Colors.black26,
+          clipBehavior: Clip.hardEdge,
+          title: const Text('Navigation Menu',
+           style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500,),),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            pages[indexclicked],
+            FloatingActionButton(onPressed: (){
+              // ignore: void_checks
+              return set();
             },
-            child: const Icon(Icons.plus_one_rounded),            
-            )
-        ],
+            child: const Icon(Icons.add_shopping_cart_rounded),
+            ),
+            const SizedBox(height: 20,),
+            MaterialButton(
+              color: Colors.blue,
+              elevation: 30,
+              height: 30,
+              minWidth: 50,
+              onPressed: (){
+                setState(() {});
+              },
+              child: const Icon(Icons.plus_one_rounded),            
+              )
+          ],
+        ),
+        drawer: Drawer(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.orange,
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage('assets/images/avoteklogo.png')),
+                ),
+                padding: EdgeInsets.all(0),
+                child: Column(
+                  children: [
+                    Gap(5),
+                    CircleAvatar(backgroundImage: AssetImage('assets/images/man.png'), radius: 50,),
+                    Gap(10),
+                    Text('Ademola Victor Oluokun',
+                     style: TextStyle(fontSize: 13, fontWeight: FontWeight.w200,color: Colors.white),),
+                     Gap(5),
+                    Text('ademolavictor869@gmail.com',
+                     style: TextStyle(fontSize: 11,fontStyle: FontStyle.italic, fontWeight: FontWeight.w100,color: Colors.white),)
+                  ],
+                )
+                ),
+              Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.all(0),
+                  children: [
+                AppDrawertile(index: 0, ontap: updatestate(0)),
+                AppDrawertile(index: 1, ontap: updatestate(1)),
+                AppDrawertile(index: 2, ontap: updatestate(2)),
+                AppDrawertile(index: 3, ontap: updatestate(3)),
+                AppDrawertile(index: 4, ontap: updatestate(4)),
+                AppDrawertile(index: 5, ontap:updatestate(5)),
+                ],),
+              ),
+              const Gap(10),
+              const AppDrawerDivider(),
+              const Gap(10),
+              Center(
+               child: Column(
+                children: [
+                Text('Adevictorolu', style: TextStyle(
+                  fontStyle: FontStyle.italic, fontSize: 14, color: Default.draweritemselectedcolor),
+                  ),
+                const Gap(1),
+                const Text('Version 1.2.5', style: TextStyle(
+                  fontStyle: FontStyle.italic, fontSize: 10, color: Default.draweritemcolor),
+                  ),
+                ],
+               ),
+              ),
+              const AppDrawerDivider(),
+          ]),
+        ),
       ),
-      // drawer: Drawer(
-      //   child: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.stretch,
-      //     children: [
-      //       const DrawerHeader(
-      //         decoration: BoxDecoration(
-      //           color: Colors.orange,
-      //           image: DecorationImage(
-      //             fit: BoxFit.fill,
-      //             image: AssetImage('assets/images/avoteklogo.png')),
-      //         ),
-      //         padding: EdgeInsets.all(0),
-      //         child: Column(
-      //           children: [
-      //             Gap(5),
-      //             CircleAvatar(backgroundImage: AssetImage('assets/images/man.png'), radius: 50,),
-      //             Gap(10),
-      //             Text('Ademola Victor Oluokun',
-      //              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w200,color: Colors.white),),
-      //              Gap(5),
-      //             Text('ademolavictor869@gmail.com',
-      //              style: TextStyle(fontSize: 11,fontStyle: FontStyle.italic, fontWeight: FontWeight.w100,color: Colors.white),)
-      //           ],
-      //         )
-      //         ),
-      //       Expanded(
-      //         child: ListView(
-      //           padding: const EdgeInsets.all(0),
-      //           children: [
-      //         AppDrawertile(index: 0, ontap: updatestate(0)),
-      //         AppDrawertile(index: 1, ontap: updatestate(1)),
-      //         AppDrawertile(index: 2, ontap: updatestate(2)),
-      //         AppDrawertile(index: 3, ontap: updatestate(3)),
-      //         AppDrawertile(index: 4, ontap: updatestate(4)),
-      //         AppDrawertile(index: 5, ontap:updatestate(5)),
-      //         ],),
-      //       ),
-      //       const Gap(10),
-      //       const AppDrawerDivider(),
-      //       const Gap(10),
-      //       Center(
-      //        child: Column(
-      //         children: [
-      //         Text('Adevictorolu', style: TextStyle(
-      //           fontStyle: FontStyle.italic, fontSize: 14, color: Default.draweritemselectedcolor),
-      //           ),
-      //         const Gap(1),
-      //         const Text('Version 1.2.5', style: TextStyle(
-      //           fontStyle: FontStyle.italic, fontSize: 10, color: Default.draweritemcolor),
-      //           ),
-      //         ],
-      //        ),
-      //       ),
-      //       const AppDrawerDivider(),
-      //   ]),
-      // ),
     );
   }
 }
