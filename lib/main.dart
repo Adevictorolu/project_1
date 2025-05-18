@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:project_1/buttons.dart';
 import 'package:project_1/defaults/default.dart';
-import 'package:project_1/textfield.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -397,7 +397,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white,
         scaffoldBackgroundColor: Colors.white60
       ),
-      home: const TextfieldScreen()
+      home: const ButtonScreen()
     );
   }
 }
