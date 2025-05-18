@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:project_1/bottomNav.dart';
+import 'package:project_1/bottomnav.dart';
 import 'package:project_1/defaults/default.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
@@ -397,7 +397,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white,
         scaffoldBackgroundColor: Colors.white60
       ),
-      home: ButtomNavScreen()
+      home: const ButtomNavScreen()
     );
   }
 }
