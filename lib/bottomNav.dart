@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_1/defaults/bottomNavDefaukt.dart';
+import 'package:project_1/defaults/bottomnavdefault.dart';
 
 class ButtomNavScreen extends StatefulWidget {
   const ButtomNavScreen({super.key});
