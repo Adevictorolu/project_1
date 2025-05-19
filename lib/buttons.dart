@@ -10,20 +10,23 @@ class ButtonScreen extends StatefulWidget {
 }
 
 class _ButtonScreenState extends State<ButtonScreen> {
+
+  GlobalKey<ScaffoldState> naakey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: FloatingActionButton.large(
         elevation: 20,
         foregroundColor: Colors.green,
         clipBehavior: Clip.hardEdge,
         onPressed: (){},
-        label: const Icon(Icons.person),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.elliptical(100, 80))
-        ),
+        child: const Icon(Icons.add_circle_rounded),
+        // shape: const RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.all(Radius.elliptical(100, 80))
+        // ),
         ),
       appBar: AppBar(
         toolbarHeight: 100,
@@ -76,6 +79,35 @@ class _ButtonScreenState extends State<ButtonScreen> {
           ),
         ),
       ),
+      backgroundColor: const Color.fromRGBO(20, 40, 100, 0.4),
+      bottomNavigationBar:  BottomNavigationBar(
+        key: GlobalKey(),
+        onTap: (value) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Column(
+                children: [
+                  Text('HI')
+                ],
+              ),
+              )
+          );
+        },
+        iconSize: 40,
+        currentIndex: 1,
+        elevation: 10,
+        backgroundColor: Colors.blue,
+          items: const [
+            BottomNavigationBarItem(
+              label: 'Inbox',
+              icon: Icon(
+                size: 50,
+                Icons.inbox_rounded)),
+            BottomNavigationBarItem(
+              label: 'Contact',
+              icon: Icon(Icons.person_2_rounded))
+          ], 
+          )
     );
   }
 }
