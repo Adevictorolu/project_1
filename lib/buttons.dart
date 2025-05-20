@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:project_1/routes.dart';
 
 class ButtonScreen extends StatefulWidget {
   const ButtonScreen({super.key});
@@ -82,8 +83,7 @@ class _ButtonScreenState extends State<ButtonScreen> {
       backgroundColor: const Color.fromRGBO(20, 40, 100, 0.4),
       bottomNavigationBar:  BottomNavigationBar(
         key: GlobalKey(),
-        onTap: (value) {
-          ScaffoldMessenger.of(context).showSnackBar(
+        onTap: (value) => ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Column(
                 children: [
@@ -91,21 +91,32 @@ class _ButtonScreenState extends State<ButtonScreen> {
                 ],
               ),
               )
-          );
-        },
+          ),
         iconSize: 40,
         currentIndex: 1,
         elevation: 10,
         backgroundColor: Colors.blue,
-          items: const [
+          items: [
             BottomNavigationBarItem(
               label: 'Inbox',
-              icon: Icon(
+              icon: IconButton(
+                icon: const Icon(
                 size: 50,
-                Icons.inbox_rounded)),
+                Icons.inbox_rounded), 
+                onPressed: () {
+                  Navigator.of(context).pushNamed(RouteManager.thirdpage);
+                },)),
             BottomNavigationBarItem(
               label: 'Contact',
-              icon: Icon(Icons.person_2_rounded))
+              icon: IconButton(
+                icon:  const Icon(
+                size: 50,
+                Icons.inbox_rounded), 
+                onPressed: () {
+                  Navigator.of(context).pushNamed(RouteManager.secondpage);
+                },
+                )
+              ),
           ], 
           )
     );

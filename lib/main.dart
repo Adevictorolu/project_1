@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:project_1/buttons.dart';
 import 'package:project_1/defaults/default.dart';
+import 'package:project_1/routes.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -390,14 +391,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
-    return MaterialApp(
-      themeAnimationCurve: Curves.bounceInOut,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        primaryColor: Colors.white,
-        scaffoldBackgroundColor: Colors.white60
-      ),
-      home: const ButtonScreen()
+    return const MaterialApp(
+      initialRoute: RouteManager.homepage,
+      onGenerateRoute: RouteManager.generateRoute,
+      // themeAnimationCurve: Curves.bounceInOut,
+      // debugShowCheckedModeBanner: false,
+      // theme: ThemeData.dark().copyWith(
+      //   primaryColor: Colors.white,
+      //   scaffoldBackgroundColor: Colors.white60
+      // ),
+      // home: const ButtonScreen()
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_1/routes.dart';
 
 class AppBarScreen extends StatefulWidget {
   const AppBarScreen({super.key});
@@ -11,9 +12,11 @@ class _AppBarScreenState extends State<AppBarScreen> {
 
   String text = 'Hello, how are you today';
 
+  GlobalKey<ScaffoldState> drawerkey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
-  GlobalKey<ScaffoldState> drawerkey = GlobalKey();
+
     return DefaultTabController(
       length: 3,
       animationDuration: const Duration(seconds: 1),
@@ -43,12 +46,16 @@ class _AppBarScreenState extends State<AppBarScreen> {
             IconButton(
               splashRadius: 10,
               splashColor: Colors.amber,
-              onPressed: (){}, icon: const Icon(Icons.cast),
+              onPressed: (){
+                Navigator.of(context).pushNamed(RouteManager.fifthpage);
+              }, icon: const Icon(Icons.cast),
               ),
             IconButton(
               splashRadius: 10,
               splashColor: Colors.amber,
-              onPressed: (){}, icon: const Icon(Icons.notification_add),
+              onPressed: (){
+                Navigator.of(context).pushNamed(RouteManager.secondpage);
+              }, icon: const Icon(Icons.notification_add),
               ),
             IconButton(
               splashRadius: 10,
